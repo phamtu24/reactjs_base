@@ -7,7 +7,7 @@ import {
 import HomeScreen from '../screens/HomeScreen';
 import UserScreen from '../screens/UserScreen';
 import MainScreen from '../screens/MainScreen';
-import ROUTER from '../constants/Constant';
+
 
 export class AppNavigator extends Component {
 
