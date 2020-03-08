@@ -7,6 +7,7 @@ import {
 import HomeScreen from '../screens/HomeScreen';
 import UserScreen from '../screens/UserScreen';
 import MainScreen from '../screens/MainScreen';
+import AuthLoading from '../screens/Auth/AuthLoading';
 
 
 export class AppNavigator extends Component {
@@ -14,7 +15,8 @@ export class AppNavigator extends Component {
     render() {
         return (
             <Router>
-                <Route path='/' exact component={MainScreen} />
+                <Route path='/' exact component={AuthLoading} />
+                <Route path='/main' exact component={MainScreen} />
                 <Route path='/home' exact component={HomeScreen} />
                 <Route path='/user' exact component={UserScreen} />
                 {/* <PrivateRoute path="/" Component={MailData} /> */}
