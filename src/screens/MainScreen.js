@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
+import logo from '../logo.svg';
 import { Link } from 'react-router-dom';
 import { ROUTER } from '../constants/Constant';
-import { requestHomeData } from '../../app/constants/Api';
-import reactotron from '../../ReactotronConfig';
+import { requestGetUserInfo } from '../constants/Api';
+import reactotron from '../ReactotronConfig';
 export default class UserScreen extends Component {
 
-    async getData() {
-        reactotron.log("hello")
-        try {
-            let res = await requestHomeData();
-            reactotron.log(res)
-        } catch (err) {
-            reactotron.log(err)
-        }
-
-    }
-
     render() {
-        this.getData()
         return (
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <Link to={ROUTER.HOME} 
-                        href = '    '
+                    <Link to={ROUTER.HOME}
+                        href='    '
                     >
                         <a
                             className="App-link"

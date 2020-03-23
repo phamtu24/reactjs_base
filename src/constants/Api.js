@@ -1,19 +1,19 @@
 import axios from "axios";
+import Cookie from 'js-cookie';
 
 function createAxios() {
-  // AsyncStorage.setItem("token", '773DE1FE9732F26F7552BC921CBE347E')
   var axiosInstant = axios.create();
-  axiosInstant.defaults.baseURL = "http://150.95.115.192:8021/";
+  axiosInstant.defaults.baseURL = "http://150.95.114.185:8888/";
   axiosInstant.defaults.timeout = 20000;
   axiosInstant.defaults.headers = { "Content-Type": "application/json" };
 
-  // axiosInstant.interceptors.request.use(
-  //   async config => {
-  //     config.headers.token = await AsyncStorage.getItem("token");
-  //     return config;
-  //   },
-  //   error => Promise.reject(error)
-  // );
+  axiosInstant.interceptors.request.use(
+    async config => {
+      config.headers.token = Cookie.get('SESSION_ID');
+      return config;
+    },
+    error => Promise.reject(error)
+  );
 
   return axiosInstant;
 }
@@ -24,7 +24,7 @@ export const getAxios = createAxios();
 function handleResult(api) {
   return api.then(res => {
     if (res.data.status != 1) {
-      return Promise.reject(new Error("Co loi xay ra"));
+      return Promise.reject(res.data);
     }
     return Promise.resolve(res.data);
   });
@@ -44,5 +44,9 @@ export const requestHomeData = (deviceID = "") => {
     getAxios.get(`api/Service/GetHomeScreen?deviceID=${deviceID}`)
   );
 };
+
+export const requestGetUserInfo = () => {
+  return handleResult(getAxios.get(`users/getUserInfo`))
+}
 
 
