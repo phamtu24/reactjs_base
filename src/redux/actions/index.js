@@ -1,5 +1,5 @@
 import {
-  GET_USER,
+  GET_USER, REQUEST_LOGIN,
 } from "./type";
 
 export const getUserInfoAction = () => ({

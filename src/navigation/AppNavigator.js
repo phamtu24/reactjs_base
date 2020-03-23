@@ -7,20 +7,34 @@ import {
 import HomeScreen from '../screens/HomeScreen';
 import UserScreen from '../screens/UserScreen';
 import MainScreen from '../screens/MainScreen';
-import AuthLoading from '../screens/Auth/AuthLoading';
+import LoginScreen from '../screens/Auth/LoginScreen';
 import PrivateRoute from './PrivateRoute'
+import Header from '../components/Header';
+import NavBar from '../components/NavBar';
 
 export class AppNavigator extends Component {
 
     render() {
         return (
             <Router>
-                <Route path='/Login' exact component={AuthLoading} />
-                <Route path='/main' exact component={MainScreen} />
-                <Route path='/home' exact component={HomeScreen} />
-                <PrivateRoute path='/user' exact Component={UserScreen} />
-                {/* <PrivateRoute path="/" Component={MailData} /> */}
+                <Route path='/Login' exact component={LoginScreen} />
+                <PrivateRoute path='/' exact Component={MainNavigator} />
             </Router>
+        )
+    }
+}
+
+class MainNavigator extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <>
+                <Header />
+                <PrivateRoute path='/' exact Component={UserScreen} />
+            </>
         )
     }
 }
